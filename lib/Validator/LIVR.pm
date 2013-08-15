@@ -11,8 +11,9 @@ use Validator::LIVR::Rules::String;
 use Validator::LIVR::Rules::Numeric;
 use Validator::LIVR::Rules::Special;
 use Validator::LIVR::Rules::Helpers;
+use Validator::LIVR::Rules::Filters;
 
-our $VERSION = '0.02';
+our $VERSION = '0.04';
 
 my %DEFAULT_RULES = (
     'required'         => \&Validator::LIVR::Rules::Common::required,
@@ -42,6 +43,10 @@ my %DEFAULT_RULES = (
     'list_of'          => \&Validator::LIVR::Rules::Helpers::list_of,
     'list_of_objects'  => \&Validator::LIVR::Rules::Helpers::list_of_objects,
     'list_of_different_objects' => \&Validator::LIVR::Rules::Helpers::list_of_different_objects,
+
+    'trim'             =>  \&Validator::LIVR::Rules::Filters::trim,
+    'to_lc'            =>  \&Validator::LIVR::Rules::Filters::to_lc,
+    'to_uc'            =>  \&Validator::LIVR::Rules::Filters::to_uc,
 );
 
 my $IS_DEFAULT_AUTO_TRIM = 0;
@@ -130,17 +135,19 @@ sub validate {
 
         foreach my $v_cb (@$validators) {
             undef($field_result);
-            my $err_code = $v_cb->($value, $data, \$field_result);
+            my $err_code = $v_cb->(
+                exists $result{$field_name} ? $result{$field_name} : $value, 
+                $data, 
+                \$field_result
+            );
 
             if ( $err_code ) {
                 $errors{$field_name} = $err_code;
                 $is_ok = 0;
                 last;
+            } elsif ( exists $data->{$field_name} ) {
+                $result{$field_name} = $field_result // $value;    
             }
-        }
-
-        if ( $is_ok && exists $data->{$field_name} ) {
-            $result{$field_name} = $field_result // $value;
         }
     }
 
@@ -260,6 +267,10 @@ Validator::LIVR - Lightweight validator supporting Language Independent Validati
        ...
     }
 
+    # You can use filters separately or can combine them with validation:
+    my $validator = Validator::LIVR->new({
+        email => [ 'required', 'trim', 'email', 'to_lc' ]
+    });
 
     # Feel free to register your own rules
     my $validator = Validator::LIVR->new({
@@ -390,7 +401,7 @@ Here is "max_number" implemenation:
 
     Validator::LIVR->register_default_rules( max_number => \&max_number );
 
-All rules for the validator are equal. It does not distinguish "required" and "list_of_different_objects" rule.
+All rules for the validator are equal. It does not distinguish "required", "list_of_different_objects" and "trim" rules.
 So, you can extend validator with any rules you like.
 
 Just look at the existing rules implementation:
@@ -406,6 +417,8 @@ Just look at the existing rules implementation:
 =item * L<Validator::LIVR::Rules::Special>;
 
 =item * L<Validator::LIVR::Rules::Helpers>;
+
+=item * L<Validator::LIVR::Rules::Filters>;
 
 =back
 
