@@ -4,7 +4,7 @@
       "Viktor Turskyi <koorchik@cpan.org>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.131490",
+   "generated_by" : "ExtUtils::MakeMaker version 6.98, CPAN::Meta::Converter version 2.140640",
    "license" : [
       "unknown"
    ],
@@ -16,7 +16,8 @@
    "no_index" : {
       "directory" : [
          "t",
-         "inc"
+         "inc",
+         "t"
       ]
    },
    "prereqs" : {
@@ -40,5 +41,10 @@
       }
    },
    "release_status" : "stable",
-   "version" : "0.04"
+   "resources" : {
+      "repository" : {
+         "url" : "https://github.com/koorchik/Validator-LIVR"
+      }
+   },
+   "version" : "0.05"
 }

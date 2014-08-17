@@ -3,23 +3,26 @@ abstract: 'Lightweight validator supporting Language Independent Validation Rule
 author:
   - 'Viktor Turskyi <koorchik@cpan.org>'
 build_requires:
-  JSON: 0
-  Test::Exception: 0
-  Test::More: 0
+  JSON: '0'
+  Test::Exception: '0'
+  Test::More: '0'
 configure_requires:
-  ExtUtils::MakeMaker: 0
+  ExtUtils::MakeMaker: '0'
 dynamic_config: 1
-generated_by: 'ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.131490'
+generated_by: 'ExtUtils::MakeMaker version 6.98, CPAN::Meta::Converter version 2.140640'
 license: unknown
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
-  version: 1.4
+  version: '1.4'
 name: Validator-LIVR
 no_index:
   directory:
     - t
     - inc
+    - t
 requires:
-  Email::Valid: 0
-  perl: 5.01
-version: 0.04
+  Email::Valid: '0'
+  perl: '5.01'
+resources:
+  repository: https://github.com/koorchik/Validator-LIVR
+version: '0.05'
