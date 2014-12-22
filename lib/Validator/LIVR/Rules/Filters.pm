@@ -37,5 +37,34 @@ sub to_uc {
     };
 }
 
+sub remove {
+    my $chars = shift;
+    my $re = qr/[\Q$chars\E]/;
+
+    return sub {
+        my ( $value, undef, $output_ref ) = @_;
+        return if !defined($value) || ref($value) || $value eq '';
+
+        $value =~ s/$re//g;
+
+        $$output_ref = $value;
+        return;
+    };
+}
+
+sub leave_only {
+    my $chars = shift;
+    my $re = qr/[^\Q$chars\E]/;
+
+    return sub {
+        my ( $value, undef, $output_ref ) = @_;
+        return if !defined($value) || ref($value) || $value eq '';
+
+        $value =~ s/$re//g;
+
+        $$output_ref = $value;
+        return;
+    };
+}
 
 1;
