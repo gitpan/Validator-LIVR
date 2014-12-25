@@ -26,4 +26,4 @@ requires:
   perl: '5.01'
 resources:
   repository: https://github.com/koorchik/Validator-LIVR
-version: '0.08'
+version: '0.09'

@@ -1,4 +1,3 @@
-Build.PL
 Changes
 lib/Validator/LIVR.pm
 lib/Validator/LIVR/Rules/Common.pm
@@ -14,8 +13,6 @@ t/02-rules_registration.t
 t/03-auto_trim.t
 t/04-custom_filters.t
 Makefile.PL
-META.yml
-META.json
 t/test_suite/aliases_negative/01-adult_age/aliases.json
 t/test_suite/aliases_negative/01-adult_age/errors.json
 t/test_suite/aliases_negative/01-adult_age/input.json
@@ -58,9 +55,9 @@ t/test_suite/negative/05-max_length/rules.json
 t/test_suite/negative/06-length_equal/errors.json
 t/test_suite/negative/06-length_equal/input.json
 t/test_suite/negative/06-length_equal/rules.json
-t/test_suite/negative/07-lenght_between/errors.json
-t/test_suite/negative/07-lenght_between/input.json
-t/test_suite/negative/07-lenght_between/rules.json
+t/test_suite/negative/07-length_between/errors.json
+t/test_suite/negative/07-length_between/input.json
+t/test_suite/negative/07-length_between/rules.json
 t/test_suite/negative/08-like/errors.json
 t/test_suite/negative/08-like/input.json
 t/test_suite/negative/08-like/rules.json
@@ -199,6 +196,5 @@ t/test_suite/positive/33-remove/rules.json
 t/test_suite/positive/34-leave_only/input.json
 t/test_suite/positive/34-leave_only/output.json
 t/test_suite/positive/34-leave_only/rules.json
-t/test_suite/negative/07-lenght_between/errors.json
-t/test_suite/negative/07-lenght_between/input.json
-t/test_suite/negative/07-lenght_between/rules.json
+META.yml                                 Module YAML meta-data (added by MakeMaker)
+META.json                                Module JSON meta-data (added by MakeMaker)
